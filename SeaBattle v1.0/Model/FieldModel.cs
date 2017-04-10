@@ -57,15 +57,15 @@ namespace SeaBattle_v1._0.Model
                     
                         for (int i = 0; i < 4; i++)
                         {
-                            StateCell[posX + i, posY] = 1;
+                            StateCell[posX + i, posY] = 4;
                             for (int q = -1; q <= 1; q++)
                             {
                                 for (int p = -1; p <= 1; p++)
                                 {
                                     if (posX + i + p >= 0 && posX + i + p <= 9 && posY + q >= 0 && posY + q <= 9)
                                     {
-                                        if (StateCell[posX + i + p, posY + q] != 1)
-                                            StateCell[posX + i + p, posY + q] = 2;
+                                        if (StateCell[posX + i + p, posY + q] != 4)
+                                            StateCell[posX + i + p, posY + q] = 9;
                                     }
                                 }
                             }
@@ -79,15 +79,15 @@ namespace SeaBattle_v1._0.Model
                     
                         for (int i = 0; i < 4; i++)
                         {
-                            StateCell[posX, posY + i] = 1;
+                            StateCell[posX, posY + i] = 4;
                             for (int q = -1; q <= 1; q++)
                             {
                                 for (int p = -1; p <= 1; p++)
                                 {
                                     if (posX + p >= 0 && posX + p <= 9 && posY + i + q >= 0 && posY + i + q <= 9)
                                     {
-                                        if (StateCell[posX + p, posY + i + q] != 1)
-                                            StateCell[posX + p, posY + i + q] = 2;
+                                        if (StateCell[posX + p, posY + i + q] != 4)
+                                            StateCell[posX + p, posY + i + q] = 9;
                                     }
                                 }
                             }
@@ -110,22 +110,22 @@ namespace SeaBattle_v1._0.Model
                     {
                         posX = rand.Next(8);
                         posY = rand.Next(10);
-                        if (StateCell[posX, posY] != 1 && StateCell[posX, posY] != 2 && StateCell[posX + 1, posY] != 1 && StateCell[posX + 1, posY] != 2 && StateCell[posX + 2, posY] != 1 && StateCell[posX + 2, posY] != 2)
+                        if (StateCell[posX, posY] != 4 && StateCell[posX, posY] != 9 && StateCell[posX + 1, posY] != 4 && StateCell[posX + 1, posY] != 9 && StateCell[posX + 2, posY] != 4 && StateCell[posX + 2, posY] != 9)
                             b = true;
 
                         if (b == true)
                         {
                             for (int i = 0; i < 3; i++)
                             {
-                                StateCell[posX + i, posY] = 1;
+                                StateCell[posX + i, posY] = 3;
                                 for (int q = -1; q <= 1; q++)
                                 {
                                     for (int p = -1; p <= 1; p++)
                                     {
                                         if (posX + i + p >= 0 && posX + i + p <= 9 && posY + q >= 0 && posY + q <= 9)
                                         {
-                                            if (StateCell[posX + i + p, posY + q] != 1)
-                                                StateCell[posX + i + p, posY + q] = 2;
+                                            if (StateCell[posX + i + p, posY + q] != 3)
+                                                StateCell[posX + i + p, posY + q] = 9;
                                         }
                                     }
                                 }
@@ -140,22 +140,22 @@ namespace SeaBattle_v1._0.Model
                     {
                         posX = rand.Next(10);
                         posY = rand.Next(8);
-                        if (StateCell[posX, posY] != 1 && StateCell[posX, posY] != 2 && StateCell[posX, posY + 1] != 1 && StateCell[posX, posY + 1] != 2 && StateCell[posX, posY + 2] != 1 && StateCell[posX, posY + 2] != 2)
+                        if (StateCell[posX, posY] != 4 && StateCell[posX, posY] != 9 && StateCell[posX, posY + 1] != 4 && StateCell[posX, posY + 1] != 9 && StateCell[posX, posY + 2] != 4 && StateCell[posX, posY + 2] != 9)
                             b = true;
 
                         if (b == true)
                         {
                             for (int i = 0; i < 3; i++)
                             {
-                                StateCell[posX, posY + i] = 1;
+                                StateCell[posX, posY + i] = 3;
                                 for (int q = -1; q <= 1; q++)
                                 {
                                     for (int p = -1; p <= 1; p++)
                                     {
                                         if (posX + p >= 0 && posX + p <= 9 && posY + i + q >= 0 && posY + i + q <= 9)
                                         {
-                                            if (StateCell[posX + p, posY + i + q] != 1)
-                                                StateCell[posX + p, posY + i + q] = 2;
+                                            if (StateCell[posX + p, posY + i + q] != 3)
+                                                StateCell[posX + p, posY + i + q] = 9;
                                         }
                                     }
                                 }
@@ -179,22 +179,22 @@ namespace SeaBattle_v1._0.Model
                     {
                         posX = rand.Next(9);
                         posY = rand.Next(10);
-                        if (StateCell[posX, posY] != 1 && StateCell[posX, posY] != 2 && StateCell[posX + 1, posY] != 1 && StateCell[posX + 1, posY] != 2)
+                        if (StateCell[posX, posY] != 4 && StateCell[posX, posY] != 3 && StateCell[posX, posY] != 9 && StateCell[posX + 1, posY] != 4 && StateCell[posX + 1, posY] != 3 && StateCell[posX + 1, posY] != 9)
                             b = true;
 
                         if (b == true)
                         {
                             for (int i = 0; i < 2; i++)
                             {
-                                StateCell[posX + i, posY] = 1;
+                                StateCell[posX + i, posY] = 2;
                                 for (int q = -1; q <= 1; q++)
                                 {
                                     for (int p = -1; p <= 1; p++)
                                     {
                                         if (posX + i + p >= 0 && posX + i + p <= 9 && posY + q >= 0 && posY + q <= 9)
                                         {
-                                            if (StateCell[posX + i + p, posY + q] != 1)
-                                                StateCell[posX + i + p, posY + q] = 2;
+                                            if (StateCell[posX + i + p, posY + q] != 2)
+                                                StateCell[posX + i + p, posY + q] = 9;
                                         }
                                     }
                                 }
@@ -209,22 +209,22 @@ namespace SeaBattle_v1._0.Model
                     {
                         posX = rand.Next(10);
                         posY = rand.Next(9);
-                        if (StateCell[posX, posY] != 1 && StateCell[posX, posY] != 2 && StateCell[posX, posY + 1] != 1 && StateCell[posX, posY + 1] != 2)
+                        if (StateCell[posX, posY] != 4 && StateCell[posX, posY] != 3 && StateCell[posX, posY] != 9 && StateCell[posX, posY + 1] != 4 && StateCell[posX, posY + 1] != 3 && StateCell[posX, posY + 1] != 9)
                             b = true;
 
                         if (b == true)
                         {
                             for (int i = 0; i < 2; i++)
                             {
-                                StateCell[posX, posY + i] = 1;
+                                StateCell[posX, posY + i] = 2;
                                 for (int q = -1; q <= 1; q++)
                                 {
                                     for (int p = -1; p <= 1; p++)
                                     {
                                         if (posX + p >= 0 && posX + i + p <= 9 && posY + i + q >= 0 && posY + i + q <= 9)
                                         {
-                                            if (StateCell[posX + p, posY + i + q] != 1)
-                                                StateCell[posX + p, posY + i + q] = 2;
+                                            if (StateCell[posX + p, posY + i + q] != 2)
+                                                StateCell[posX + p, posY + i + q] = 9;
                                         }
                                     }
                                 }
@@ -248,7 +248,7 @@ namespace SeaBattle_v1._0.Model
                     {
                         posX = rand.Next(10);
                         posY = rand.Next(10);
-                        if (StateCell[posX, posY] != 1 && StateCell[posX, posY] != 2)
+                        if (StateCell[posX, posY] != 4 && StateCell[posX, posY] != 3 && StateCell[posX, posY] != 2 && StateCell[posX, posY] != 9)
                             b = true;
 
                         if (b == true)
@@ -262,7 +262,7 @@ namespace SeaBattle_v1._0.Model
                                         if (posX + p >= 0 && posX + p <= 9 && posY + q >= 0 && posY + q <= 9)
                                         {
                                             if (StateCell[posX + p, posY + q] != 1)
-                                                StateCell[posX + p, posY + q] = 2;
+                                                StateCell[posX + p, posY + q] = 9;
                                         }
                                     }
                                 }
@@ -277,7 +277,7 @@ namespace SeaBattle_v1._0.Model
                     {
                         posX = rand.Next(10);
                         posY = rand.Next(10);
-                        if (StateCell[posX, posY] != 1 && StateCell[posX, posY] != 2)
+                        if (StateCell[posX, posY] != 4 && StateCell[posX, posY] != 3 && StateCell[posX, posY] != 2 && StateCell[posX, posY] != 9)
                             b = true;
 
                         if (b == true)
@@ -291,7 +291,7 @@ namespace SeaBattle_v1._0.Model
                                         if (posX + p >= 0 && posX + p <= 9 && posY + q >= 0 && posY + q <= 9)
                                         {
                                             if (StateCell[posX + p, posY + q] != 1)
-                                                StateCell[posX + p, posY + q] = 2;
+                                                StateCell[posX + p, posY + q] = 9;
                                         }
                                     }
                                 }
