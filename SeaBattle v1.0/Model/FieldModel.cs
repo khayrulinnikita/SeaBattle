@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SeaBattle_v1._0.Model
 {
-    class FieldModel
+    class FieldModel : SyntheticMind
     {
         
 
@@ -30,18 +30,15 @@ namespace SeaBattle_v1._0.Model
             SetShip1(rand);
             SetShip1(rand);
             SetShip1(rand);
+
+            Fire(StateCell);
             
-            for (int j = 0; j < 10; j++)
-            {
-                for (int i = 0; i < 10; i++)
-                {
-                        Console.Write(StateCell[i, j] + " ");
-                }
-                Console.WriteLine();
-            }
+            
                 
             
         }
+
+        
 
         private void SetShip4(Random rand)  //установка 4 палубного корабля
         {
@@ -221,7 +218,7 @@ namespace SeaBattle_v1._0.Model
                                 {
                                     for (int p = -1; p <= 1; p++)
                                     {
-                                        if (posX + p >= 0 && posX + i + p <= 9 && posY + i + q >= 0 && posY + i + q <= 9)
+                                        if (posX + p >= 0 && posX  + p <= 9 && posY + i + q >= 0 && posY + i + q <= 9)
                                         {
                                             if (StateCell[posX + p, posY + i + q] != 2)
                                                 StateCell[posX + p, posY + i + q] = 9;

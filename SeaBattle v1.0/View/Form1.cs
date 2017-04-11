@@ -15,7 +15,7 @@ namespace SeaBattle_v1._0
     {
         public Form1()
         {
-            this.StartPosition = FormStartPosition.CenterScreen;
+            //this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
             FieldModel field = new FieldModel();
             field.SetShip();
