@@ -110,7 +110,7 @@ namespace SeaBattle_v1._0.Model
                     {
                         posX = rand.Next(8);
                         posY = rand.Next(10);
-                        if (StateCell[posX, posY] != 4 && StateCell[posX, posY] != 9 && StateCell[posX + 1, posY] != 4 && StateCell[posX + 1, posY] != 9 && StateCell[posX + 2, posY] != 4 && StateCell[posX + 2, posY] != 9)
+                        if (StateCell[posX, posY] ==0 && StateCell[posX + 1, posY] == 0 && StateCell[posX + 2, posY] == 0)
                             b = true;
 
                         if (b == true)
@@ -140,7 +140,7 @@ namespace SeaBattle_v1._0.Model
                     {
                         posX = rand.Next(10);
                         posY = rand.Next(8);
-                        if (StateCell[posX, posY] != 4 && StateCell[posX, posY] != 9 && StateCell[posX, posY + 1] != 4 && StateCell[posX, posY + 1] != 9 && StateCell[posX, posY + 2] != 4 && StateCell[posX, posY + 2] != 9)
+                        if (StateCell[posX, posY] == 0 && StateCell[posX, posY + 1] == 0 && StateCell[posX, posY + 2] == 0)
                             b = true;
 
                         if (b == true)
@@ -179,7 +179,7 @@ namespace SeaBattle_v1._0.Model
                     {
                         posX = rand.Next(9);
                         posY = rand.Next(10);
-                        if (StateCell[posX, posY] != 4 && StateCell[posX, posY] != 3 && StateCell[posX, posY] != 9 && StateCell[posX + 1, posY] != 4 && StateCell[posX + 1, posY] != 3 && StateCell[posX + 1, posY] != 9)
+                        if (StateCell[posX, posY] == 0 && StateCell[posX + 1, posY] == 0)
                             b = true;
 
                         if (b == true)
@@ -209,7 +209,7 @@ namespace SeaBattle_v1._0.Model
                     {
                         posX = rand.Next(10);
                         posY = rand.Next(9);
-                        if (StateCell[posX, posY] != 4 && StateCell[posX, posY] != 3 && StateCell[posX, posY] != 9 && StateCell[posX, posY + 1] != 4 && StateCell[posX, posY + 1] != 3 && StateCell[posX, posY + 1] != 9)
+                        if (StateCell[posX, posY] == 0 && StateCell[posX, posY + 1] == 0)
                             b = true;
 
                         if (b == true)
@@ -248,7 +248,7 @@ namespace SeaBattle_v1._0.Model
                     {
                         posX = rand.Next(10);
                         posY = rand.Next(10);
-                        if (StateCell[posX, posY] != 4 && StateCell[posX, posY] != 3 && StateCell[posX, posY] != 2 && StateCell[posX, posY] != 9)
+                        if (StateCell[posX, posY] == 0)
                             b = true;
 
                         if (b == true)
@@ -277,7 +277,7 @@ namespace SeaBattle_v1._0.Model
                     {
                         posX = rand.Next(10);
                         posY = rand.Next(10);
-                        if (StateCell[posX, posY] != 4 && StateCell[posX, posY] != 3 && StateCell[posX, posY] != 2 && StateCell[posX, posY] != 9)
+                        if (StateCell[posX, posY] == 0)
                             b = true;
 
                         if (b == true)
