@@ -11,6 +11,9 @@ namespace SeaBattle_v1._0.Model
         public void Fire(int[,] StateCell)
         {
             Random rand = new Random();
+            int fireX, fireY;
+            fireX = rand.Next(10);
+            fireY = rand.Next(10);
 
             for (int j = 0; j < 10; j++)
             {
