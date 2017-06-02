@@ -3,44 +3,67 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SeaBattle_v1._0.Model;
+using SeaBattle_v1._0.View;
 
-namespace SeaBattle_v1._0.Model
+namespace SeaBattle_v1._0.View
 {
-    class FieldModel : SyntheticMind
+    public class FieldModel 
     {
-        
 
-        int[,] StateCell = new int[10, 10];
+
+        static int[,] StateCellPlayer = new int[10, 10];
+        static int[,] StateCellComputer = new int[10, 10];
+
+        public int[,] getStateCellPlayer()
+        {
+            return StateCellPlayer;
+        }
+
+        public int[,] getStateCellComputer()
+        {
+            return StateCellComputer;
+        }
+
 
         public void SetShip()
         {
             
             Random rand = new Random();
 
-            SetShip4(rand);
+            SetShip4(rand, StateCellPlayer);
 
-            SetShip3(rand);
-            SetShip3(rand);
+            SetShip3(rand, StateCellPlayer);
+            SetShip3(rand, StateCellPlayer);
 
-            SetShip2(rand);
-            SetShip2(rand);
-            SetShip2(rand);
+            SetShip2(rand, StateCellPlayer);
+            SetShip2(rand, StateCellPlayer);
+            SetShip2(rand, StateCellPlayer);
 
-            SetShip1(rand);
-            SetShip1(rand);
-            SetShip1(rand);
-            SetShip1(rand);
+            SetShip1(rand, StateCellPlayer);
+            SetShip1(rand, StateCellPlayer);
+            SetShip1(rand, StateCellPlayer);
+            SetShip1(rand, StateCellPlayer);
 
-            Fire(StateCell);
-            
-            
-                
-            
+
+
+            SetShip4(rand, StateCellComputer);
+
+            SetShip3(rand, StateCellComputer);
+            SetShip3(rand, StateCellComputer);
+
+            SetShip2(rand, StateCellComputer);
+            SetShip2(rand, StateCellComputer);
+            SetShip2(rand, StateCellComputer);
+
+            SetShip1(rand, StateCellComputer);
+            SetShip1(rand, StateCellComputer);
+            SetShip1(rand, StateCellComputer);
+            SetShip1(rand, StateCellComputer);
         }
 
-        
 
-        private void SetShip4(Random rand)  //установка 4 палубного корабля
+        private void SetShip4(Random rand, int[,] StateCell)  //установка 4 палубного корабля
         {
             int posX, posY;
             int direction = rand.Next(2);
@@ -94,7 +117,7 @@ namespace SeaBattle_v1._0.Model
             }
         }
 
-        private void SetShip3(Random rand)  // установка 3 палубного корабля
+        private void SetShip3(Random rand, int[,] StateCell)  // установка 3 палубного корабля
         {
             int posX, posY;
             int direction = rand.Next(2);
@@ -163,7 +186,7 @@ namespace SeaBattle_v1._0.Model
             }
         }
 
-        private void SetShip2(Random rand)  //установка 2 палубного корабля
+        private void SetShip2(Random rand, int[,] StateCell)  //установка 2 палубного корабля
         {
             int posX, posY;
             int direction = rand.Next(2);
@@ -232,72 +255,34 @@ namespace SeaBattle_v1._0.Model
             }
         }
 
-        private void SetShip1(Random rand) // установка 1 палубного корабля
+        private void SetShip1(Random rand, int[,] StateCell) // установка 1 палубного корабля
         {
             int posX, posY;
-            int direction = rand.Next(2);
             bool b = false;
 
-            switch (direction)
+            while (b == false)
             {
-                case 0:
-                    while (b == false)
-                    {
-                        posX = rand.Next(10);
-                        posY = rand.Next(10);
-                        if (StateCell[posX, posY] == 0)
-                            b = true;
+                posX = rand.Next(10);
+                posY = rand.Next(10);
+                if (StateCell[posX, posY] == 0)
+                    b = true;
 
-                        if (b == true)
+                if (b == true)
+                {
+                    StateCell[posX, posY] = 1;
+                    for (int q = -1; q <= 1; q++)
+                    {
+                        for (int p = -1; p <= 1; p++)
                         {
-                            
-                                StateCell[posX, posY] = 1;
-                                for (int q = -1; q <= 1; q++)
-                                {
-                                    for (int p = -1; p <= 1; p++)
-                                    {
-                                        if (posX + p >= 0 && posX + p <= 9 && posY + q >= 0 && posY + q <= 9)
-                                        {
-                                            if (StateCell[posX + p, posY + q] != 1)
-                                                StateCell[posX + p, posY + q] = 9;
-                                        }
-                                    }
-                                }
-                            
+                            if (posX + p >= 0 && posX + p <= 9 && posY + q >= 0 && posY + q <= 9)
+                            {
+                                if (StateCell[posX + p, posY + q] != 1)
+                                    StateCell[posX + p, posY + q] = 9;
+                            }
                         }
                     }
-
-                    break;
-
-                case 1:
-                    while (b == false)
-                    {
-                        posX = rand.Next(10);
-                        posY = rand.Next(10);
-                        if (StateCell[posX, posY] == 0)
-                            b = true;
-
-                        if (b == true)
-                        {
-                            
-                                StateCell[posX, posY] = 1;
-                                for (int q = -1; q <= 1; q++)
-                                {
-                                    for (int p = -1; p <= 1; p++)
-                                    {
-                                        if (posX + p >= 0 && posX + p <= 9 && posY + q >= 0 && posY + q <= 9)
-                                        {
-                                            if (StateCell[posX + p, posY + q] != 1)
-                                                StateCell[posX + p, posY + q] = 9;
-                                        }
-                                    }
-                                }
-                            
-                        }
-                    }
-                    break;
+                }
             }
         }
-
     }
 }
