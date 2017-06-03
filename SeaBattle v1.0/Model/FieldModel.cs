@@ -117,8 +117,11 @@ namespace SeaBattle_v1._0.View
             }
         }
 
+
+        int k = 19;
         private void SetShip3(Random rand, int[,] StateCell)  // установка 3 палубного корабля
         {
+            k += 1;
             int posX, posY;
             int direction = rand.Next(2);
             bool b = false;
@@ -137,14 +140,14 @@ namespace SeaBattle_v1._0.View
                         {
                             for (int i = 0; i < 3; i++)
                             {
-                                StateCell[posX + i, posY] = 3;
+                                StateCell[posX + i, posY] = k;
                                 for (int q = -1; q <= 1; q++)
                                 {
                                     for (int p = -1; p <= 1; p++)
                                     {
                                         if (posX + i + p >= 0 && posX + i + p <= 9 && posY + q >= 0 && posY + q <= 9)
                                         {
-                                            if (StateCell[posX + i + p, posY + q] != 3)
+                                            if (StateCell[posX + i + p, posY + q] != k)
                                                 StateCell[posX + i + p, posY + q] = 9;
                                         }
                                     }
@@ -167,14 +170,14 @@ namespace SeaBattle_v1._0.View
                         {
                             for (int i = 0; i < 3; i++)
                             {
-                                StateCell[posX, posY + i] = 3;
+                                StateCell[posX, posY + i] = k;
                                 for (int q = -1; q <= 1; q++)
                                 {
                                     for (int p = -1; p <= 1; p++)
                                     {
                                         if (posX + p >= 0 && posX + p <= 9 && posY + i + q >= 0 && posY + i + q <= 9)
                                         {
-                                            if (StateCell[posX + p, posY + i + q] != 3)
+                                            if (StateCell[posX + p, posY + i + q] != k)
                                                 StateCell[posX + p, posY + i + q] = 9;
                                         }
                                     }
@@ -186,8 +189,11 @@ namespace SeaBattle_v1._0.View
             }
         }
 
+
+        int s = 9;
         private void SetShip2(Random rand, int[,] StateCell)  //установка 2 палубного корабля
         {
+            s += 1;
             int posX, posY;
             int direction = rand.Next(2);
             bool b = false;
@@ -201,19 +207,19 @@ namespace SeaBattle_v1._0.View
                         posY = rand.Next(10);
                         if (StateCell[posX, posY] == 0 && StateCell[posX + 1, posY] == 0)
                             b = true;
-
+                        
                         if (b == true)
                         {
                             for (int i = 0; i < 2; i++)
                             {
-                                StateCell[posX + i, posY] = 2;
+                                StateCell[posX + i, posY] = s;
                                 for (int q = -1; q <= 1; q++)
                                 {
                                     for (int p = -1; p <= 1; p++)
                                     {
                                         if (posX + i + p >= 0 && posX + i + p <= 9 && posY + q >= 0 && posY + q <= 9)
                                         {
-                                            if (StateCell[posX + i + p, posY + q] != 2)
+                                            if (StateCell[posX + i + p, posY + q] != s)
                                                 StateCell[posX + i + p, posY + q] = 9;
                                         }
                                     }
@@ -236,14 +242,14 @@ namespace SeaBattle_v1._0.View
                         {
                             for (int i = 0; i < 2; i++)
                             {
-                                StateCell[posX, posY + i] = 2;
+                                StateCell[posX, posY + i] = s;
                                 for (int q = -1; q <= 1; q++)
                                 {
                                     for (int p = -1; p <= 1; p++)
                                     {
                                         if (posX + p >= 0 && posX  + p <= 9 && posY + i + q >= 0 && posY + i + q <= 9)
                                         {
-                                            if (StateCell[posX + p, posY + i + q] != 2)
+                                            if (StateCell[posX + p, posY + i + q] != s)
                                                 StateCell[posX + p, posY + i + q] = 9;
                                         }
                                     }
