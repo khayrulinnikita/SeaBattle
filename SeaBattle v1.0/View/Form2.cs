@@ -12,7 +12,7 @@ namespace SeaBattle_v1._0.View
 {
     public partial class Form2 : Form
     {
-        static FieldModel script = new FieldModel();
+        static FieldModel script = FieldModel.getInstance();
 
         int number13 = 2;
         int number14 = 2;

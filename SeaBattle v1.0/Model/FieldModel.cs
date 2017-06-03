@@ -11,9 +11,29 @@ namespace SeaBattle_v1._0.View
     public class FieldModel 
     {
 
+        private static FieldModel mFieldModel = null;
 
-        static int[,] StateCellPlayer = new int[10, 10];
-        static int[,] StateCellComputer = new int[10, 10];
+        private FieldModel()
+        {
+
+        }
+
+        public static FieldModel getInstance()
+        {
+
+            if (mFieldModel != null)
+            {
+                return mFieldModel;
+            }
+            else
+            {
+                mFieldModel = new FieldModel();
+                return mFieldModel;
+            }
+        }
+
+        int[,] StateCellPlayer = new int[10, 10];
+        int[,] StateCellComputer = new int[10, 10];
 
         public int[,] getStateCellPlayer()
         {
@@ -28,7 +48,8 @@ namespace SeaBattle_v1._0.View
 
         public void SetShip()
         {
-            
+            StateCellPlayer = new int[10, 10];
+            StateCellComputer = new int[10, 10];
             Random rand = new Random();
 
             SetShip4(rand, StateCellPlayer);
@@ -60,6 +81,9 @@ namespace SeaBattle_v1._0.View
             SetShip1(rand, StateCellComputer);
             SetShip1(rand, StateCellComputer);
             SetShip1(rand, StateCellComputer);
+
+            k = 19;
+            s = 9;
         }
 
 

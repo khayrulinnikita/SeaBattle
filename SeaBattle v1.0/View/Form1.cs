@@ -21,8 +21,7 @@ namespace SeaBattle_v1._0
         {
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
-            FieldModel field = new FieldModel();
-            field.SetShip();
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -37,7 +36,8 @@ namespace SeaBattle_v1._0
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            FieldModel field = FieldModel.getInstance();
+            field.SetShip();
             Form2 Form2 = new Form2();
             Form2.WindowState = FormWindowState.Maximized;
             Form2.Show();
