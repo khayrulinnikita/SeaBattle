@@ -14,20 +14,35 @@ namespace SeaBattle_v1._0.View
     {
         static FieldModel script = FieldModel.getInstance();
 
+        bool[,] StateFire = new bool[10, 10];
+        bool[,] StateFireComputer = new bool[10, 10];
+
+        int number10 = 2;
+        int number11 = 2;
+        int number12 = 2;
         int number13 = 2;
         int number14 = 2;
         int number15 = 2;
+        int number20 = 3;
+        int number21 = 3;
         int number22 = 3;
         int number23 = 3;
         int number4 = 4;
+        int number4Player = 4;
+
+        Random rand = new Random();
+
+        int RipComputer, RipPlayer;
+
 
         PictureBox[,] pole1 = new PictureBox[10, 10];
-        int[,] StateCell = new int[10, 10];
+        PictureBox[,] polePlayer = new PictureBox[10, 10];
+        int[,] StateCellComputer = new int[10, 10];
+        int[,] StateCellPlayer = new int[10, 10];
 
         public Form2()
         {
             InitializeComponent();
-            
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -42,49 +57,139 @@ namespace SeaBattle_v1._0.View
 
         void fire(object obj, MouseEventArgs ant)
         {
-            if (StateCell[((PBInh)obj).i, ((PBInh)obj).j] == 1 || StateCell[((PBInh)obj).i, ((PBInh)obj).j] == 13 || StateCell[((PBInh)obj).i, ((PBInh)obj).j] == 14 || StateCell[((PBInh)obj).i, ((PBInh)obj).j] == 15 || StateCell[((PBInh)obj).i, ((PBInh)obj).j] == 22 || StateCell[((PBInh)obj).i, ((PBInh)obj).j] == 23 || StateCell[((PBInh)obj).i, ((PBInh)obj).j] == 4)
-                ((PBInh)obj).Image = Properties.Resources.kill;
-            else
+            if (StateFire[((PBInh)obj).i, ((PBInh)obj).j] == false) 
             {
-                ((PBInh)obj).Image = Properties.Resources.miss;
+                StateFire[((PBInh)obj).i, ((PBInh)obj).j] = true;
+                if (StateCellComputer[((PBInh)obj).i, ((PBInh)obj).j] == 1 || StateCellComputer[((PBInh)obj).i, ((PBInh)obj).j] == 13 || StateCellComputer[((PBInh)obj).i, ((PBInh)obj).j] == 14 || StateCellComputer[((PBInh)obj).i, ((PBInh)obj).j] == 15 || StateCellComputer[((PBInh)obj).i, ((PBInh)obj).j] == 22 || StateCellComputer[((PBInh)obj).i, ((PBInh)obj).j] == 23 || StateCellComputer[((PBInh)obj).i, ((PBInh)obj).j] == 4)
+                {
+                    ((PBInh)obj).Image = Properties.Resources.kill;
+                    RipComputer += 1;
+
+                    if (StateCellComputer[((PBInh)obj).i, ((PBInh)obj).j] == 1)
+                        Check1(((PBInh)obj).i, ((PBInh)obj).j);
+
+                    if (StateCellComputer[((PBInh)obj).i, ((PBInh)obj).j] == 22)
+                        Check22(((PBInh)obj).i, ((PBInh)obj).j);
+
+                    if (StateCellComputer[((PBInh)obj).i, ((PBInh)obj).j] == 23)
+                        Check23(((PBInh)obj).i, ((PBInh)obj).j);
+
+                    if (StateCellComputer[((PBInh)obj).i, ((PBInh)obj).j] == 13)
+                        Check13(((PBInh)obj).i, ((PBInh)obj).j);
+
+                    if (StateCellComputer[((PBInh)obj).i, ((PBInh)obj).j] == 14)
+                        Check14(((PBInh)obj).i, ((PBInh)obj).j);
+
+                    if (StateCellComputer[((PBInh)obj).i, ((PBInh)obj).j] == 15)
+                        Check15(((PBInh)obj).i, ((PBInh)obj).j);
+
+                    if (StateCellComputer[((PBInh)obj).i, ((PBInh)obj).j] == 4)
+                        Check4(((PBInh)obj).i, ((PBInh)obj).j);
+
+                    CheckWinPlayer(RipComputer);
+                }
+                    
+                else
+                {
+                    ((PBInh)obj).Image = Properties.Resources.miss;
+                    ComputerFire();
+                }
+                
             }
-            if (StateCell[((PBInh)obj).i, ((PBInh)obj).j] == 1)
-                Check1(((PBInh)obj).i, ((PBInh)obj).j);
-
-            if (StateCell[((PBInh)obj).i, ((PBInh)obj).j] == 22)
-                Check22(((PBInh)obj).i, ((PBInh)obj).j);
-
-            if (StateCell[((PBInh)obj).i, ((PBInh)obj).j] == 23)
-                Check23(((PBInh)obj).i, ((PBInh)obj).j);
-
-            if (StateCell[((PBInh)obj).i, ((PBInh)obj).j] == 13)
-                Check13(((PBInh)obj).i, ((PBInh)obj).j);
-
-            if (StateCell[((PBInh)obj).i, ((PBInh)obj).j] == 14)
-                Check14(((PBInh)obj).i, ((PBInh)obj).j);
-
-            if (StateCell[((PBInh)obj).i, ((PBInh)obj).j] == 15)
-                Check15(((PBInh)obj).i, ((PBInh)obj).j);
-
-            if (StateCell[((PBInh)obj).i, ((PBInh)obj).j] == 4)
-                Check4(((PBInh)obj).i, ((PBInh)obj).j);
-
-            
-
         }
 
         private void Check1(int i, int j)
-        {
-            if (StateCell[i, j] == 1)
+        { 
+            for (int q = -1; q <= 1; q++)
             {
-                for (int q = -1; q <= 1; q++)
+                for (int p = -1; p <= 1; p++)
                 {
-                    for (int p = -1; p <= 1; p++)
+                    if (i + p >= 0 && i + p <= 9 && j + q >= 0 && j + q <= 9)
                     {
-                        if (i + p >= 0 && i + p <= 9 && j + q >= 0 && j + q <= 9)
+                        if (StateCellComputer[i + p, j + q] != 1)
                         {
-                            if (StateCell[i + p, j + q] != 1)
-                                pole1[i + p, j + q].Image = Properties.Resources.miss;
+                            pole1[i + p, j + q].Image = Properties.Resources.miss;
+                            StateFire[i + p, j + q] = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void Check1Player(int i, int j)
+        {
+            for (int q = -1; q <= 1; q++)
+            {
+                for (int p = -1; p <= 1; p++)
+                {
+                    if (i + p >= 0 && i + p <= 9 && j + q >= 0 && j + q <= 9)
+                    {
+                        if (StateCellPlayer[i + p, j + q] != 1)
+                        {
+                            polePlayer[i + p, j + q].Image = Properties.Resources.miss;
+                            StateFireComputer[i + p, j + q] = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void Check20(int i, int j)
+        {
+            number20 -= 1;
+            if (number20 == 0)
+            {
+                for (int k = 0; k < 10; k++)
+                {
+                    for (int m = 0; m < 10; m++)
+                    {
+                        if (StateCellPlayer[k, m] == 20)
+                        {
+                            for (int q = -1; q <= 1; q++)
+                            {
+                                for (int p = -1; p <= 1; p++)
+                                {
+                                    if (k + p >= 0 && k + p <= 9 && m + q >= 0 && m + q <= 9)
+                                    {
+                                        if (StateCellPlayer[k + p, m + q] != 20)
+                                        {
+                                            polePlayer[k + p, m + q].Image = Properties.Resources.miss;
+                                            StateFireComputer[k + p, m + q] = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void Check21(int i, int j)
+        {
+            number21 -= 1;
+            if (number21 == 0)
+            {
+                for (int k = 0; k < 10; k++)
+                {
+                    for (int m = 0; m < 10; m++)
+                    {
+                        if (StateCellPlayer[k, m] == 21)
+                        {
+                            for (int q = -1; q <= 1; q++)
+                            {
+                                for (int p = -1; p <= 1; p++)
+                                {
+                                    if (k + p >= 0 && k + p <= 9 && m + q >= 0 && m + q <= 9)
+                                    {
+                                        if (StateCellPlayer[k + p, m + q] != 21)
+                                        {
+                                            polePlayer[k + p, m + q].Image = Properties.Resources.miss;
+                                            StateFireComputer[k + p, m + q] = true;
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -100,7 +205,7 @@ namespace SeaBattle_v1._0.View
                 {
                     for (int m = 0; m < 10; m++)
                     {
-                        if (StateCell[k, m] == 22)
+                        if (StateCellComputer[k, m] == 22)
                         {
                             for (int q = -1; q <= 1; q++)
                             {
@@ -108,8 +213,11 @@ namespace SeaBattle_v1._0.View
                                 {
                                     if (k + p >= 0 && k + p <= 9 && m + q >= 0 && m + q <= 9)
                                     {
-                                        if (StateCell[k + p, m + q] != 22)
+                                        if (StateCellComputer[k + p, m + q] != 22)
+                                        {
                                             pole1[k + p, m + q].Image = Properties.Resources.miss;
+                                            StateFire[k + p, m + q] = true;
+                                        } 
                                     }
                                 }
                             }
@@ -118,7 +226,6 @@ namespace SeaBattle_v1._0.View
                 }
             }
         }
-
 
         private void Check23(int i, int j)
         {
@@ -129,7 +236,7 @@ namespace SeaBattle_v1._0.View
                 {
                     for (int m = 0; m < 10; m++)
                     {
-                        if (StateCell[k, m] == 23)
+                        if (StateCellComputer[k, m] == 23)
                         {
                             for (int q = -1; q <= 1; q++)
                             {
@@ -137,8 +244,104 @@ namespace SeaBattle_v1._0.View
                                 {
                                     if (k + p >= 0 && k + p <= 9 && m + q >= 0 && m + q <= 9)
                                     {
-                                        if (StateCell[k + p, m + q] != 23)
+                                        if (StateCellComputer[k + p, m + q] != 23)
+                                        {
                                             pole1[k + p, m + q].Image = Properties.Resources.miss;
+                                            StateFire[k + p, m + q] = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void Check10(int i, int j)
+        {
+            number10 -= 1;
+            if (number10 == 0)
+            {
+                for (int k = 0; k < 10; k++)
+                {
+                    for (int m = 0; m < 10; m++)
+                    {
+                        if (StateCellPlayer[k, m] == 10)
+                        {
+                            for (int q = -1; q <= 1; q++)
+                            {
+                                for (int p = -1; p <= 1; p++)
+                                {
+                                    if (k + p >= 0 && k + p <= 9 && m + q >= 0 && m + q <= 9)
+                                    {
+                                        if (StateCellPlayer[k + p, m + q] != 10)
+                                        {
+                                            polePlayer[k + p, m + q].Image = Properties.Resources.miss;
+                                            StateFireComputer[k + p, m + q] = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void Check11(int i, int j)
+        {
+            number11 -= 1;
+            if (number11 == 0)
+            {
+                for (int k = 0; k < 10; k++)
+                {
+                    for (int m = 0; m < 10; m++)
+                    {
+                        if (StateCellPlayer[k, m] == 11)
+                        {
+                            for (int q = -1; q <= 1; q++)
+                            {
+                                for (int p = -1; p <= 1; p++)
+                                {
+                                    if (k + p >= 0 && k + p <= 9 && m + q >= 0 && m + q <= 9)
+                                    {
+                                        if (StateCellPlayer[k + p, m + q] != 11)
+                                        {
+                                            polePlayer[k + p, m + q].Image = Properties.Resources.miss;
+                                            StateFireComputer[k + p, m + q] = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void Check12(int i, int j)
+        {
+            number12 -= 1;
+            if (number12 == 0)
+            {
+                for (int k = 0; k < 10; k++)
+                {
+                    for (int m = 0; m < 10; m++)
+                    {
+                        if (StateCellPlayer[k, m] == 12)
+                        {
+                            for (int q = -1; q <= 1; q++)
+                            {
+                                for (int p = -1; p <= 1; p++)
+                                {
+                                    if (k + p >= 0 && k + p <= 9 && m + q >= 0 && m + q <= 9)
+                                    {
+                                        if (StateCellPlayer[k + p, m + q] != 12)
+                                        {
+                                            polePlayer[k + p, m + q].Image = Properties.Resources.miss;
+                                            StateFireComputer[k + p, m + q] = true;
+                                        }
                                     }
                                 }
                             }
@@ -157,7 +360,7 @@ namespace SeaBattle_v1._0.View
                 {
                     for (int m = 0; m < 10; m++)
                     {
-                        if (StateCell[k, m] == 13)
+                        if (StateCellComputer[k, m] == 13)
                         {
                             for (int q = -1; q <= 1; q++)
                             {
@@ -165,8 +368,11 @@ namespace SeaBattle_v1._0.View
                                 {
                                     if (k + p >= 0 && k + p <= 9 && m + q >= 0 && m + q <= 9)
                                     {
-                                        if (StateCell[k + p, m + q] != 13)
+                                        if (StateCellComputer[k + p, m + q] != 13)
+                                        {
                                             pole1[k + p, m + q].Image = Properties.Resources.miss;
+                                            StateFire[k + p, m + q] = true;
+                                        }
                                     }
                                 }
                             }
@@ -185,7 +391,7 @@ namespace SeaBattle_v1._0.View
                 {
                     for (int m = 0; m < 10; m++)
                     {
-                        if (StateCell[k, m] == 14)
+                        if (StateCellComputer[k, m] == 14)
                         {
                             for (int q = -1; q <= 1; q++)
                             {
@@ -193,8 +399,11 @@ namespace SeaBattle_v1._0.View
                                 {
                                     if (k + p >= 0 && k + p <= 9 && m + q >= 0 && m + q <= 9)
                                     {
-                                        if (StateCell[k + p, m + q] != 14)
+                                        if (StateCellComputer[k + p, m + q] != 14)
+                                        {
                                             pole1[k + p, m + q].Image = Properties.Resources.miss;
+                                            StateFire[k + p, m + q] = true;
+                                        }
                                     }
                                 }
                             }
@@ -213,7 +422,7 @@ namespace SeaBattle_v1._0.View
                 {
                     for (int m = 0; m < 10; m++)
                     {
-                        if (StateCell[k, m] == 15)
+                        if (StateCellComputer[k, m] == 15)
                         {
                             for (int q = -1; q <= 1; q++)
                             {
@@ -221,8 +430,11 @@ namespace SeaBattle_v1._0.View
                                 {
                                     if (k + p >= 0 && k + p <= 9 && m + q >= 0 && m + q <= 9)
                                     {
-                                        if (StateCell[k + p, m + q] != 15)
+                                        if (StateCellComputer[k + p, m + q] != 15)
+                                        {
                                             pole1[k + p, m + q].Image = Properties.Resources.miss;
+                                            StateFire[k + p, m + q] = true;
+                                        }
                                     }
                                 }
                             }
@@ -241,7 +453,7 @@ namespace SeaBattle_v1._0.View
                 {
                     for (int m = 0; m < 10; m++)
                     {
-                        if (StateCell[k, m] == 4)
+                        if (StateCellComputer[k, m] == 4)
                         {
                             for (int q = -1; q <= 1; q++)
                             {
@@ -249,8 +461,11 @@ namespace SeaBattle_v1._0.View
                                 {
                                     if (k + p >= 0 && k + p <= 9 && m + q >= 0 && m + q <= 9)
                                     {
-                                        if (StateCell[k + p, m + q] != 4)
+                                        if (StateCellComputer[k + p, m + q] != 4)
+                                        {
                                             pole1[k + p, m + q].Image = Properties.Resources.miss;
+                                            StateFire[k + p, m + q] = true;
+                                        }
                                     }
                                 }
                             }
@@ -258,6 +473,99 @@ namespace SeaBattle_v1._0.View
                     }
                 }
             }
+        }
+
+        private void Check4Player(int i, int j)
+        {
+            number4Player -= 1;
+            if (number4Player == 0)
+            {
+                for (int k = 0; k < 10; k++)
+                {
+                    for (int m = 0; m < 10; m++)
+                    {
+                        if (StateCellPlayer[k, m] == 4)
+                        {
+                            for (int q = -1; q <= 1; q++)
+                            {
+                                for (int p = -1; p <= 1; p++)
+                                {
+                                    if (k + p >= 0 && k + p <= 9 && m + q >= 0 && m + q <= 9)
+                                    {
+                                        if (StateCellPlayer[k + p, m + q] != 4)
+                                        {
+                                            polePlayer[k + p, m + q].Image = Properties.Resources.miss;
+                                            StateFireComputer[k + p, m + q] = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void CheckWinComputer(int k)
+        {
+            if (k == 20)
+            {
+                ComputerWin form = new ComputerWin();
+                form.ShowDialog();
+            }
+        }
+
+        private void CheckWinPlayer(int k)
+        {
+            if (k == 20)
+            {
+                PlayerWin form = new PlayerWin();
+                form.ShowDialog();
+            }
+        }
+
+        private void ComputerFire()
+        {
+            
+            int i = rand.Next(10);
+            int j = rand.Next(10);
+            if (StateFireComputer[i, j] == false)
+            {
+                StateFireComputer[i, j] = true;
+                if (StateCellPlayer[i, j] == 1 || StateCellPlayer[i, j] == 20 || StateCellPlayer[i, j] == 21 || StateCellPlayer[i, j] == 10 || StateCellPlayer[i, j] == 11 || StateCellPlayer[i, j] == 12 || StateCellPlayer[i, j] == 4)
+                {
+                    polePlayer[i, j].Image = Properties.Resources.kill;
+                    RipPlayer += 1;
+                    ComputerFire();
+                }
+                else
+                    polePlayer[i, j].Image = Properties.Resources.miss;
+                if (StateCellPlayer[i, j] == 1)
+                    Check1Player(i, j);
+
+                if (StateCellPlayer[i, j] == 20)
+                    Check20(i, j);
+
+                if (StateCellPlayer[i, j] == 21)
+                    Check21(i, j);
+
+                if (StateCellPlayer[i, j] == 10)
+                    Check10(i, j);
+
+                if (StateCellPlayer[i, j] == 11)
+                    Check11(i, j);
+
+                if (StateCellPlayer[i, j] == 12)
+                    Check12(i, j);
+
+                if (StateCellPlayer[i, j] == 4)
+                    Check4Player(i, j);
+            }
+            else
+            {
+                ComputerFire();
+            }
+            CheckWinComputer(RipPlayer);
         }
 
         private void Form2_Shown(object sender, EventArgs e)
@@ -273,7 +581,8 @@ namespace SeaBattle_v1._0.View
                
                 for (int j = 0; j < 10; j++)
                 {   
-                    StateCell[i,j] = arr1[i,j];
+                    StateCellComputer[i,j] = arr1[i,j];
+                    StateCellPlayer[i, j] = arr[i, j];
                     PBInh pole = new PBInh();
                     pole.Location = new Point(90, 90);
                     pole.Size = new Size(35, 35);
@@ -283,8 +592,8 @@ namespace SeaBattle_v1._0.View
                     else
                         pole.Image = Properties.Resources.pole;
                     pole.SizeMode = PictureBoxSizeMode.StretchImage;
-                    pole1[i, j] = pole;
-                    Controls.Add(pole1[i, j]);
+                    polePlayer[i, j] = pole;
+                    Controls.Add(polePlayer[i, j]);
 
                 }
             }
@@ -310,6 +619,16 @@ namespace SeaBattle_v1._0.View
                 }
             }
         }
+
+        private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            FieldModel field = FieldModel.getInstance();
+            field.SetShip();
+            Form2 Form2 = new Form2();
+            Form2.WindowState = FormWindowState.Maximized;
+            Form2.Show();
+        }
     }
 
 
@@ -317,7 +636,6 @@ namespace SeaBattle_v1._0.View
     {
         public int i;
         public int j;
-      //  public int state;
     }
 
 

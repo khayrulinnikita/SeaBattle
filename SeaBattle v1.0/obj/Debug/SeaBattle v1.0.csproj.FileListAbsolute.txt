@@ -8,3 +8,5 @@ c:\users\nikita\documents\visual studio 2013\Projects\SeaBattle v1.0\SeaBattle v
 c:\users\nikita\documents\visual studio 2013\Projects\SeaBattle v1.0\SeaBattle v1.0\obj\Debug\SeaBattle v1.0.pdb
 c:\users\nikita\documents\visual studio 2013\Projects\SeaBattle v1.0\SeaBattle v1.0\obj\Debug\SeaBattle_v1._0.Form1.resources
 C:\Users\Nikita\documents\visual studio 2013\Projects\SeaBattle v1.0\SeaBattle v1.0\obj\Debug\SeaBattle_v1._0.View.Form2.resources
+C:\Users\Nikita\documents\visual studio 2013\Projects\SeaBattle v1.0\SeaBattle v1.0\obj\Debug\SeaBattle_v1._0.View.ComputerWin.resources
+C:\Users\Nikita\documents\visual studio 2013\Projects\SeaBattle v1.0\SeaBattle v1.0\obj\Debug\SeaBattle_v1._0.View.PlayerWin.resources

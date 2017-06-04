@@ -46,6 +46,12 @@
   <ItemGroup>
     <Compile Include="Model\FieldModel.cs" />
     <Compile Include="Model\Fire.cs" />
+    <Compile Include="View\ComputerWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ComputerWin.Designer.cs">
+      <DependentUpon>ComputerWin.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +66,12 @@
     <Compile Include="View\Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\PlayerWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PlayerWin.Designer.cs">
+      <DependentUpon>PlayerWin.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -70,11 +82,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="View\ComputerWin.resx">
+      <DependentUpon>ComputerWin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PlayerWin.resx">
+      <DependentUpon>PlayerWin.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
