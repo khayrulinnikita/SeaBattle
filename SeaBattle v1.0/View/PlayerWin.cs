@@ -25,7 +25,7 @@ namespace SeaBattle_v1._0.View
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Close();
             FieldModel field = FieldModel.getInstance();
             field.SetShip();
             Form2 Form2 = new Form2();

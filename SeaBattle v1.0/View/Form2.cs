@@ -510,6 +510,7 @@ namespace SeaBattle_v1._0.View
         {
             if (k == 20)
             {
+                this.Close();
                 ComputerWin form = new ComputerWin();
                 form.ShowDialog();
             }
@@ -519,6 +520,7 @@ namespace SeaBattle_v1._0.View
         {
             if (k == 20)
             {
+                this.Close();
                 PlayerWin form = new PlayerWin();
                 form.ShowDialog();
             }
@@ -536,6 +538,7 @@ namespace SeaBattle_v1._0.View
                 {
                     polePlayer[i, j].Image = Properties.Resources.kill;
                     RipPlayer += 1;
+                    CheckWinComputer(RipPlayer);
                     ComputerFire();
                 }
                 else
@@ -565,12 +568,15 @@ namespace SeaBattle_v1._0.View
             {
                 ComputerFire();
             }
-            CheckWinComputer(RipPlayer);
+            
         }
 
         private void Form2_Shown(object sender, EventArgs e)
         {
-            
+
+            RipPlayer = 0;
+            RipComputer = 0;
+
             int[,] arr = script.getStateCellPlayer();
             int[,] arr1 = script.getStateCellComputer();
 
@@ -605,7 +611,7 @@ namespace SeaBattle_v1._0.View
                 for (int j = 0; j < 10; j++)
                 {
                     PBInh pole = new PBInh();
-                    pole.Location = new Point(500, 90);
+                    pole.Location = new Point(550, 90);
                     pole.Size = new Size(35, 35);
                     pole.Location = new Point(pole.Location.X + 35 * i, pole.Location.Y + 35 * j);
                     pole.Image = Properties.Resources.pole;

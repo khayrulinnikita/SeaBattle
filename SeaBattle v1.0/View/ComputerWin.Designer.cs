@@ -50,6 +50,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "New Game";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -71,6 +72,7 @@
             this.Controls.Add(this.label1);
             this.Name = "ComputerWin";
             this.Text = "Lose";
+            this.Load += new System.EventHandler(this.ComputerWin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
