@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SeaBattle_v1._0.Model;
+
 using SeaBattle_v1._0.View;
 
 namespace SeaBattle_v1._0

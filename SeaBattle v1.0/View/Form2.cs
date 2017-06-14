@@ -57,7 +57,7 @@ namespace SeaBattle_v1._0.View
 
         void fire(object obj, MouseEventArgs ant)
         {
-            if (StateFire[((PBInh)obj).i, ((PBInh)obj).j] == false) 
+            if (StateFire[((PBInh)obj).i, ((PBInh)obj).j] == false) //Если в клетку не стреляли
             {
                 StateFire[((PBInh)obj).i, ((PBInh)obj).j] = true;
                 if (StateCellComputer[((PBInh)obj).i, ((PBInh)obj).j] == 1 || StateCellComputer[((PBInh)obj).i, ((PBInh)obj).j] == 13 || StateCellComputer[((PBInh)obj).i, ((PBInh)obj).j] == 14 || StateCellComputer[((PBInh)obj).i, ((PBInh)obj).j] == 15 || StateCellComputer[((PBInh)obj).i, ((PBInh)obj).j] == 22 || StateCellComputer[((PBInh)obj).i, ((PBInh)obj).j] == 23 || StateCellComputer[((PBInh)obj).i, ((PBInh)obj).j] == 4)
@@ -98,6 +98,7 @@ namespace SeaBattle_v1._0.View
             }
         }
 
+        // обрисовка мертвых кораблей 
         private void Check1(int i, int j)
         { 
             for (int q = -1; q <= 1; q++)
@@ -510,6 +511,7 @@ namespace SeaBattle_v1._0.View
         {
             if (k == 20)
             {
+                System.Threading.Thread.Sleep(500);
                 this.Close();
                 ComputerWin form = new ComputerWin();
                 form.ShowDialog();
@@ -520,6 +522,7 @@ namespace SeaBattle_v1._0.View
         {
             if (k == 20)
             {
+                System.Threading.Thread.Sleep(500);
                 this.Close();
                 PlayerWin form = new PlayerWin();
                 form.ShowDialog();
@@ -528,7 +531,6 @@ namespace SeaBattle_v1._0.View
 
         private void ComputerFire()
         {
-            
             int i = rand.Next(10);
             int j = rand.Next(10);
             if (StateFireComputer[i, j] == false)
@@ -543,6 +545,7 @@ namespace SeaBattle_v1._0.View
                 }
                 else
                     polePlayer[i, j].Image = Properties.Resources.miss;
+
                 if (StateCellPlayer[i, j] == 1)
                     Check1Player(i, j);
 
@@ -568,7 +571,6 @@ namespace SeaBattle_v1._0.View
             {
                 ComputerFire();
             }
-            
         }
 
         private void Form2_Shown(object sender, EventArgs e)
@@ -577,12 +579,12 @@ namespace SeaBattle_v1._0.View
             RipPlayer = 0;
             RipComputer = 0;
 
-            int[,] arr = script.getStateCellPlayer();
+            int[,] arr = script.getStateCellPlayer(); // значение массивов из FieldModel
             int[,] arr1 = script.getStateCellComputer();
 
             MouseEventHandler handler = new MouseEventHandler(fire);
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++) // рисование поля Player'a
             {
                
                 for (int j = 0; j < 10; j++)
@@ -599,13 +601,13 @@ namespace SeaBattle_v1._0.View
                         pole.Image = Properties.Resources.pole;
                     pole.SizeMode = PictureBoxSizeMode.StretchImage;
                     polePlayer[i, j] = pole;
-                    Controls.Add(polePlayer[i, j]);
+                    Controls.Add(polePlayer[i, j]);  
 
                 }
             }
 
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++) // рисование поля Computer'a
             {
 
                 for (int j = 0; j < 10; j++)
@@ -634,6 +636,22 @@ namespace SeaBattle_v1._0.View
             Form2 Form2 = new Form2();
             Form2.WindowState = FormWindowState.Maximized;
             Form2.Show();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void сToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Info inf = new Info();
+            inf.ShowDialog();
         }
     }
 

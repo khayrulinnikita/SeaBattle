@@ -10,3 +10,4 @@ c:\users\nikita\documents\visual studio 2013\Projects\SeaBattle v1.0\SeaBattle v
 C:\Users\Nikita\documents\visual studio 2013\Projects\SeaBattle v1.0\SeaBattle v1.0\obj\Debug\SeaBattle_v1._0.View.Form2.resources
 C:\Users\Nikita\documents\visual studio 2013\Projects\SeaBattle v1.0\SeaBattle v1.0\obj\Debug\SeaBattle_v1._0.View.ComputerWin.resources
 C:\Users\Nikita\documents\visual studio 2013\Projects\SeaBattle v1.0\SeaBattle v1.0\obj\Debug\SeaBattle_v1._0.View.PlayerWin.resources
+C:\Users\Nikita\documents\visual studio 2013\Projects\SeaBattle v1.0\SeaBattle v1.0\obj\Debug\SeaBattle_v1._0.View.Info.resources
